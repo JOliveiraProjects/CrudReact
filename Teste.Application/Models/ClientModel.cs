@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using Teste.Common;
 
 namespace Teste.Application.Models
 {
-    public class ClientModel
+    public class ClientModel : IValidatableObject
     {
         public string Id { get; set; }
 
@@ -27,5 +29,27 @@ namespace Teste.Application.Models
         public List<AddressModel> Address { get; set; }
 
         public List<SocialNetworkModel> SocialNetwork { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            var validations = new List<ValidationResult>();
+
+            if (string.IsNullOrEmpty(Name))
+            {
+                validations.Add(new ValidationResult("O nome é obrigatório."));
+            }
+
+            if (string.IsNullOrEmpty(CPF))
+            {
+                validations.Add(new ValidationResult("CPF obrigatório."));
+            }
+
+            if (!CPF.IsValidCPF())
+            {
+                validations.Add(new ValidationResult("CPF inválido."));
+            }
+
+            return validations;
+        }
     }
 }

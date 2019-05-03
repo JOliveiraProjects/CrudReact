@@ -36,6 +36,12 @@ namespace Teste.Application
         public ClientModel Save(ClientModel model)
         {
             Client clientMap = AutoMapper.Mapper.Map<ClientModel, Client>(model);
+
+            Client modelExist = _clientRepository.Get(x => x.Name.Equals(model.Name) && x.CPF.Equals(model.CPF));
+
+            if (modelExist != null)
+                throw new Exception("Cliente já cadastrado.");
+
             Client resultModel = _clientRepository.SaveClient(clientMap);
             ClientModel clientModelMap = AutoMapper.Mapper.Map<Client, ClientModel>(resultModel);
             return clientModelMap;
