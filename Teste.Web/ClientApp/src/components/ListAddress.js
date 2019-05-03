@@ -39,7 +39,8 @@ export class ListAddress extends Component {
                                 <select
                                     id="addressType"
                                     name="addressType"
-                                    className="form-control">
+                                    className="form-control"
+                                    required>
                                     <option value="1">Residencial</option>
                                     <option value="2">Comercial</option>
                                 </select>
@@ -54,7 +55,8 @@ export class ListAddress extends Component {
                                     name="thoroughfare"
                                     type="text"
                                     placeholder="Logradouro"
-                                    className="form-control input-md" />
+                                    className="form-control input-md"
+                                    required />
                             </div>
                         </div>
 
@@ -66,7 +68,8 @@ export class ListAddress extends Component {
                                     name="number"
                                     type="text"
                                     placeholder="Número"
-                                    className="form-control input-md" />
+                                    className="form-control input-md"
+                                    required />
                             </div>
                         </div>
 
@@ -90,7 +93,8 @@ export class ListAddress extends Component {
                                     name="neighborhood"
                                     type="text"
                                     placeholder="Bairro"
-                                    className="form-control input-md" />
+                                    className="form-control input-md"
+                                    required />
                             </div>
                         </div>
 
@@ -102,7 +106,8 @@ export class ListAddress extends Component {
                                     name="city"
                                     type="text"
                                     placeholder="Cidade"
-                                    className="form-control input-md" />
+                                    className="form-control input-md"
+                                    required />
                             </div>
                         </div>
 
@@ -114,7 +119,8 @@ export class ListAddress extends Component {
                                     name="state"
                                     type="text"
                                     placeholder="Estado"
-                                    className="form-control input-md" />
+                                    className="form-control input-md"
+                                    required />
                             </div>
                         </div>
 
@@ -126,7 +132,8 @@ export class ListAddress extends Component {
                                     name="postcode"
                                     type="text"
                                     placeholder="CEP"
-                                    className="form-control input-md" />
+                                    className="form-control input-md"
+                                    required />
                             </div>
                         </div>
 

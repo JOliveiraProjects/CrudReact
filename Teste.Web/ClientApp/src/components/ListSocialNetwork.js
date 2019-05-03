@@ -59,6 +59,7 @@ export class ListSocialNetwork extends Component {
                                     placeholder="Nome da rede social"
                                     className="form-control input-md"
                                     onChange={this.props.onFieldChange('socialName').bind(this)}
+                                    required
                                 />
                             </div>
                         </div>
@@ -72,6 +73,7 @@ export class ListSocialNetwork extends Component {
                                     placeholder="Url"
                                     className="form-control input-md"
                                     onChange={this.props.onFieldChange('url').bind(this)}
+                                    required
                                 />
                             </div>
                         </div>

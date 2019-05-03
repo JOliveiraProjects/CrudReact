@@ -25,13 +25,15 @@ export class Home extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {clients.map(client =>
-                        <tr key={client._id}>
-                            <td>{client.name}</td>
-                            <td>{client.cpf}</td>
-                            <td>{client.birth_date}</td>
-                        </tr>
-                    )}
+                    {
+                        clients.map(client =>
+                            <tr key={client._id}>
+                                <td>{client.name}</td>
+                                <td>{client.cpf}</td>
+                                <td>{client.birth_date}</td>
+                            </tr>
+                        )
+                    }
                 </tbody>
             </table>
         );
@@ -46,7 +48,7 @@ export class Home extends Component {
             <div>
                 <h1>Lista de clientes</h1>
                 {contents}
-                <a className="btn btn-default" href={'/insertclient'}>Novo Cliente</a>
+                <a className="btn btn-default" href={'/client'}>Novo Cliente</a>
             </div>
         );
     }

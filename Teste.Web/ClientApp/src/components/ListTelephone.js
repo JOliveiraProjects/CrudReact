@@ -43,7 +43,8 @@ export class ListTelephone extends Component {
                                 <select
                                     id="telephoneType"
                                     name="telephoneType"
-                                    className="form-control">
+                                    className="form-control"
+                                    required>
                                     <option value="1">Residencial</option>
                                     <option value="2">Comercial</option>
                                     <option value="3">Celular</option>
@@ -59,7 +60,8 @@ export class ListTelephone extends Component {
                                     name="ddd"
                                     type="text"
                                     placeholder="Código da cidade"
-                                    className="form-control input-md" />
+                                    className="form-control input-md"
+                                    required />
                             </div>
                         </div>
 
@@ -71,7 +73,8 @@ export class ListTelephone extends Component {
                                     name="number"
                                     type="text"
                                     placeholder="Número do seu telefone"
-                                    className="form-control input-md" />
+                                    className="form-control input-md"
+                                    required />
                             </div>
                         </div>
 

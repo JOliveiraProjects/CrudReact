@@ -3,7 +3,7 @@ import { ListAddress } from './ListAddress';
 import { ListTelephone } from './ListTelephone';
 import { ListSocialNetwork } from './ListSocialNetwork';
 
-export class InsertClient extends Component {
+export class Client extends Component {
 
     constructor(props) {
         super(props);
@@ -14,7 +14,8 @@ export class InsertClient extends Component {
             birthDate: null,
             telephones: [],
             address: [],
-            socialNetwork: []
+            socialNetwork: [],
+            displayErrors: false
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,8 +29,29 @@ export class InsertClient extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        alert('A name was submitted: ' + this.state.name);
-        console.log(this.state);
+
+        if (!event.target.checkValidity()) {
+            this.setState({ displayErrors: true });
+            return;
+        }
+        this.setState({ displayErrors: false });
+
+        const data = new FormData(event.target);
+
+        const cliente = {
+            id: null,
+            name: data.nome,
+            cpf: data.cpf,
+            rg: data.rg,
+            birthDate: data.birthDate
+        };
+
+        fetch('api/client/save', {
+            method: 'POST',
+            body: JSON.stringify(cliente)
+        });
+
+        console.log(cliente);
     }
 
     render() {
@@ -45,9 +67,10 @@ export class InsertClient extends Component {
                                 id="name"
                                 type="text"
                                 placeholder="Seu nome completo"
-                                className="form-control input-md"
+                                className={this.state.displayErrors ? 'form-control input-md displayErrors' : 'form-control input-md'}
                                 value={this.state.name || ''}
-                                onChange={this.onFieldChange('name').bind(this)} />
+                                onChange={this.onFieldChange('name').bind(this)}
+                                required />
                         </div>
                     </div>
 
@@ -60,7 +83,9 @@ export class InsertClient extends Component {
                                 placeholder="Documento CPF"
                                 className="form-control input-md"
                                 value={this.state.cpf || ''}
-                                onChange={this.onFieldChange('cpf').bind(this)} />
+                                onChange={this.onFieldChange('cpf').bind(this)}
+                                required
+                            />
                         </div>
                     </div>
 
@@ -82,7 +107,7 @@ export class InsertClient extends Component {
                         <div className="col-md-4">
                             <input
                                 id="birthDate"
-                                type="text"
+                                type="date"
                                 placeholder="Data de nascimento"
                                 className="form-control input-md"
                                 value={this.state.birthDate || ''}
