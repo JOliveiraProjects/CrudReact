@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 using Teste.Application.Interfaces;
 using Teste.Application.Models;
 using Teste.Domain.Entities;
@@ -16,12 +16,29 @@ namespace Teste.Application
             _clientRepository = fileToProcessRepository;
         }
 
-        public IList<ClientModel> ListAll(int userId, long? frontId)
+        public ClientModel GetById(Guid id)
         {
-            var client = _clientRepository.ListAll(userId, frontId).ToList();
+            ClientModel resultModel = null;
+            Client client = _clientRepository.Get(x => x.Id == id);
 
-            var clientMap = AutoMapper.Mapper.Map<IList<Client>, IList<ClientModel>>(client);
-            return clientMap;
+            if (client == null) return resultModel;
+
+            resultModel = AutoMapper.Mapper.Map<Client, ClientModel>(client);
+            return resultModel;
+        }
+
+        public IList<object> ListAll()
+        {
+            IList<object> result = _clientRepository.ListAll();
+              return result;
+        }
+
+        public ClientModel Save(ClientModel model)
+        {
+            Client clientMap = AutoMapper.Mapper.Map<ClientModel, Client>(model);
+            Client resultModel = _clientRepository.SaveClient(clientMap);
+            ClientModel clientModelMap = AutoMapper.Mapper.Map<Client, ClientModel>(resultModel);
+            return clientModelMap;
         }
     }
 }

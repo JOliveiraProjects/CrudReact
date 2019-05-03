@@ -1,9 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Teste.Application.Interfaces
 {
     public interface IClientApplication
     {
-        IList<Models.ClientModel> ListAll(int userId, long? frontId);
+        IList<object> ListAll();
+
+        Models.ClientModel GetById(Guid id);
+
+        Models.ClientModel Save(Models.ClientModel model);
     }
 }
