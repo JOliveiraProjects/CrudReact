@@ -1,0 +1,40 @@
+
+.fa {font-size: 18px;}
+.fa-clock { color: #015692; }
+
+.fa-check-circle { color: #245b16; }
+
+.fa-ban { color: #930101; }
+
+
+.small-text { font-size: 12px; }
+
+.navbar {
+    margin-bottom: 0 !important;
+}
+
+.d-flex  {
+    display: flex;
+}
+
+.chart {
+    width: 100%; 
+}
+
+.bdr-10 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.full-width { padding-left: 0; padding-right: 0; }
+.full-width .row { margin-right: 0; margin-left: 0; }
+.full-width .col-md-12 { padding-left: 0; padding-right: 0; }
+
+table  {
+    font-size: 13px;
+}
+
+body {
+    background-color: #f4f4f4;
+    font-size: 100%;
+}
