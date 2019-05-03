@@ -4,4 +4,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Teste.Common\Teste.Common.csproj" />
+    <ProjectReference Include="..\Teste.Domain\Teste.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

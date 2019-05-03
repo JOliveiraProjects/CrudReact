@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Teste.Application.Automapper;
+using Teste.Common;
+using Teste.Infra.CrossCutting.Ioc;
 
 namespace Teste.Web
 {
@@ -20,6 +22,11 @@ namespace Teste.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // configure strongly typed settings objects
+            var appSettingsSection = Configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(appSettingsSection);
+            var appSettings = appSettingsSection.Get<AppSettings>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             // In production, the React files will be served from this directory
@@ -27,6 +34,11 @@ namespace Teste.Web
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            var dp = new NativeDependencyInjection();
+            dp.Configure(services);
+
+            AutoMapperConfig.RegisterMappings();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
